@@ -1,6 +1,8 @@
 package com.evl.employeeaccounting.entityes;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,9 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
 @Data
-@Table(name = "employee_status", schema = "employee_accounting", catalog = "")
+@Entity
+@SuperBuilder
+@NoArgsConstructor
+@Table(name = "employee_status", schema = "employee_accounting")
 public class EmployeeStatus {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +23,7 @@ public class EmployeeStatus {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = true, length = 20)
+    @Column(name = "name")
     private String name;
 
 }

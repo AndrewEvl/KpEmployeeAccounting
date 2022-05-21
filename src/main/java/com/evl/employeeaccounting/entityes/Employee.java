@@ -27,28 +27,28 @@ public class Employee {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "first_name", nullable = true, length = 20)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = true, length = 20)
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "surname", nullable = true, length = 20)
+    @Column(name = "surname")
     private String surname;
 
-    @Column(name = "birthday", nullable = true)
+    @Column(name = "birthday")
     private LocalDate birthday;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id", nullable = true)
+    @JoinColumn(name = "department_id")
     private Department department;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "position_id", nullable = true)
+    @JoinColumn(name = "position_id")
     private Position position;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "status_id", nullable = true)
+    @JoinColumn(name = "status_id")
     private EmployeeStatus status;
 
 }
