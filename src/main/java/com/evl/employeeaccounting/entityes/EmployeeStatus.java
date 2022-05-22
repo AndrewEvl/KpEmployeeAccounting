@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -23,6 +24,7 @@ public class EmployeeStatus {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @NotBlank
     @Column(name = "name")
     private String name;
 

@@ -12,4 +12,8 @@ public interface IPositionManager {
     BaseData toBaseData (Position position);
 
     Position save (String name);
+
+    Position update (Long id, String name);
+
+    void deleteById (Long id);
 }
