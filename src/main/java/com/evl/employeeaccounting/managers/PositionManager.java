@@ -1,8 +1,10 @@
 package com.evl.employeeaccounting.managers;
 
 import com.evl.employeeaccounting.controllers.dto.BaseData;
+import com.evl.employeeaccounting.entityes.Employee;
 import com.evl.employeeaccounting.entityes.Position;
 import com.evl.employeeaccounting.exeptions.ApplicationException;
+import com.evl.employeeaccounting.services.implimentation.EmployeeService;
 import com.evl.employeeaccounting.services.implimentation.PositionService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,8 @@ import static java.util.stream.Collectors.toList;
 public class PositionManager implements IPositionManager {
 
     private final PositionService positionService;
+
+    private final EmployeeService employeeService;
 
     @Override
     public List<BaseData> findAllDto() {
@@ -59,6 +63,11 @@ public class PositionManager implements IPositionManager {
     @Override
     @Transactional
     public void deleteById(Long id) {
-        positionService.deleteById(id);
+        List<Employee> employeeList = employeeService.findByPositionId(id);
+        if (employeeList.isEmpty()) {
+            positionService.deleteById(id);
+        } else {
+            throw new ApplicationException(500, "К должности привязанны сотрудники");
+        }
     }
 }

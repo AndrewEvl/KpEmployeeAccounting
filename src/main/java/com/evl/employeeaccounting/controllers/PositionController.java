@@ -1,7 +1,10 @@
 package com.evl.employeeaccounting.controllers;
 
 import com.evl.employeeaccounting.controllers.dto.BaseData;
+import com.evl.employeeaccounting.controllers.dto.NameDto;
 import com.evl.employeeaccounting.entityes.Position;
+import com.evl.employeeaccounting.exeptions.ApplicationException;
+import com.evl.employeeaccounting.exeptions.ExceptionResponse;
 import com.evl.employeeaccounting.managers.IPositionManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,7 +34,7 @@ public class PositionController {
     }
 
     @PostMapping("save")
-    public ResponseEntity<?> save(@RequestBody BaseData rq) {
+    public ResponseEntity<?> save(@RequestBody NameDto rq) {
         Position position = positionManager.save(rq.getName());
         if (position != null) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -51,8 +54,16 @@ public class PositionController {
     }
 
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<?> delete (@PathVariable("id") Long id){
-        positionManager.deleteById(id);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
+        try {
+            positionManager.deleteById(id);
+            return ResponseEntity.ok().build();
+        } catch (ApplicationException e) {
+            return ResponseEntity.status(409)
+                    .body(
+                            ExceptionResponse.builder()
+                                    .message(e.getMessage())
+                                    .build());
+        }
     }
 }
