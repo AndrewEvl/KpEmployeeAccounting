@@ -1,4 +1,4 @@
-package com.evl.employeeaccounting.managers;
+package com.evl.employeeaccounting.managers.position;
 
 import com.evl.employeeaccounting.controllers.dto.BaseData;
 import com.evl.employeeaccounting.entityes.Position;

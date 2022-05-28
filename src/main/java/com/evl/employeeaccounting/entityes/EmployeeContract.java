@@ -40,7 +40,7 @@ public class EmployeeContract {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id")
-    private Employee employeeId;
+    private Employee employee;
 
 
 }

@@ -1,6 +1,6 @@
 package com.evl.employeeaccounting.controllers;
 
-import com.evl.employeeaccounting.managers.IEmployeeManager;
+import com.evl.employeeaccounting.managers.enployee.IEmployeeManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;

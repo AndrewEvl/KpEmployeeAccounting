@@ -2,10 +2,10 @@ package com.evl.employeeaccounting.controllers;
 
 import com.evl.employeeaccounting.controllers.dto.BaseData;
 import com.evl.employeeaccounting.controllers.dto.NameDto;
-import com.evl.employeeaccounting.entityes.Position;
+import com.evl.employeeaccounting.entityes.EmployeeStatus;
 import com.evl.employeeaccounting.exeptions.ApplicationException;
 import com.evl.employeeaccounting.exeptions.ExceptionResponse;
-import com.evl.employeeaccounting.managers.position.IPositionManager;
+import com.evl.employeeaccounting.managers.status.StatusManager;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,21 +22,21 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 @RestController
 @AllArgsConstructor
-@RequestMapping({"position"})
-public class PositionController {
+@RequestMapping({"status"})
+public class StatusController {
 
-    private final IPositionManager positionManager;
+    private final StatusManager statusManager;
 
     @GetMapping("get-all")
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok()
-                .body(positionManager.findAllDto());
+                .body(statusManager.findAllDto());
     }
 
     @PostMapping("save")
     public ResponseEntity<?> save(@RequestBody NameDto rq) {
-        Position position = positionManager.save(rq.getName());
-        if (position != null) {
+        EmployeeStatus status = statusManager.save(rq.getName());
+        if (status != null) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
@@ -45,8 +45,8 @@ public class PositionController {
 
     @PutMapping("update")
     public ResponseEntity<?> update(@RequestBody BaseData rq) {
-        Position position = positionManager.update(rq.getId(), rq.getName());
-        if (position != null) {
+        EmployeeStatus status = statusManager.update(rq.getId(), rq.getName());
+        if (status != null) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
@@ -56,7 +56,7 @@ public class PositionController {
     @DeleteMapping("delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         try {
-            positionManager.deleteById(id);
+            statusManager.deleteById(id);
             return ResponseEntity.ok().build();
         } catch (ApplicationException e) {
             return ResponseEntity.status(409)

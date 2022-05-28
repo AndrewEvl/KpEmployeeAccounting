@@ -1,4 +1,4 @@
-package com.evl.employeeaccounting.managers;
+package com.evl.employeeaccounting.managers.enployee;
 
 import com.evl.employeeaccounting.controllers.dto.BaseData;
 import com.evl.employeeaccounting.controllers.dto.EmployeeDto;

@@ -1,4 +1,4 @@
-package com.evl.employeeaccounting.managers;
+package com.evl.employeeaccounting.managers.position;
 
 import com.evl.employeeaccounting.controllers.dto.BaseData;
 import com.evl.employeeaccounting.entityes.Employee;
@@ -21,7 +21,6 @@ import static java.util.stream.Collectors.toList;
 public class PositionManager implements IPositionManager {
 
     private final PositionService positionService;
-
     private final EmployeeService employeeService;
 
     @Override
