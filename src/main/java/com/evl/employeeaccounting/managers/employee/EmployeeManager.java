@@ -172,4 +172,14 @@ public class EmployeeManager implements IEmployeeManager {
     public void delete(Long id) {
         employeeService.deleteById(id);
     }
+
+    @Override
+    public EmployeeFullDto getById(Long id) {
+        Optional<Employee> employeeOptional = employeeService.findById(id);
+        if (employeeOptional.isPresent()) {
+            return toEmployeeFullDto(employeeOptional.get());
+        } else {
+            throw new ApplicationException(500, "Сотрудник ненайден");
+        }
+    }
 }

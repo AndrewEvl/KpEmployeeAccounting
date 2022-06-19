@@ -18,4 +18,6 @@ public interface IEmployeeManager {
     EmployeeFullDto save(EmployeeChangeDto employeeDto);
 
     void delete(Long id);
+
+    EmployeeFullDto getById(Long id);
 }

@@ -33,6 +33,12 @@ public class EmployeeController {
        return ResponseEntity.ok().body(resp);
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<?> getAll(@PathVariable("id") Long id) {
+        EmployeeFullDto resp = employeeManager.getById(id);
+        return ResponseEntity.ok().body(resp);
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete (@PathVariable("id") Long id){
         employeeManager.delete(id);
