@@ -5,6 +5,7 @@ import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,18 +23,22 @@ public abstract class AbstractService<E, R extends AbstractRepository<E>> {
         return repository.findAll();
     }
 
+    public List<E> findAllByIds(Collection<Long> ids) {
+        return repository.findAllById(ids);
+    }
+
     @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public E save(E e) {
         return repository.save(e);
     }
 
     @Transactional
-    public void delete (E e){
+    public void delete(E e) {
         repository.delete(e);
     }
 
     @Transactional
-    public void deleteById (Long id){
+    public void deleteById(Long id) {
         repository.deleteById(id);
     }
 

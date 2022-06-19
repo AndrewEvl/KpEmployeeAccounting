@@ -9,8 +9,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.sql.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -19,18 +21,22 @@ import java.sql.Date;
 @NoArgsConstructor
 @Table(name = "education_course", schema = "employee_accounting")
 public class EducationCourse {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
 
     @Column(name = "start_date")
-    private Date startDate;
+    private LocalDate startDate;
 
     @Column(name = "finish_date")
-    private Date finishDate;
+    private LocalDate finishDate;
+
+    @ManyToMany(mappedBy = "courseList")
+    private List<Employee> employeeList;
 
 }

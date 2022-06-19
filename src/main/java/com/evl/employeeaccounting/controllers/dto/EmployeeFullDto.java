@@ -5,11 +5,12 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class EmployeeDto {
+public class EmployeeFullDto {
 
     private Long id;
     private String firstName;
@@ -19,4 +20,5 @@ public class EmployeeDto {
     private BaseData department;
     private BaseData position;
     private BaseData status;
+    private List<CourseShortDto> courseList;
 }
