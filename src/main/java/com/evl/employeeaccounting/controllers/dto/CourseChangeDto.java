@@ -5,17 +5,18 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class CourseFullDto {
+public class CourseChangeDto {
 
     private Long id;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
-    private List<EmployeeShortDto> employeeList;
-
+    private List<Long> addEmployee = new ArrayList<>();
+    private List<Long> minusEmployee = new ArrayList<>();
 }
